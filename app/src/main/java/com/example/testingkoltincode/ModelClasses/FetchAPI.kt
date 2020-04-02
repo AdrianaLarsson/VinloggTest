@@ -50,6 +50,7 @@ interface main {
 
 
               val make : (List<GetWineClass>) -> List<GetWineClass> = { wineList ->  wineList }
+
               val grapes : (List<GetWineGrapesClass>) -> List<GetWineGrapesClass> = { grapesList ->  grapesList }
               FirstFragment().makeMyHero(view,wineList, make)
               SecondFragment().getGrapes(view,grapeList, grapes)
@@ -446,3 +447,229 @@ fun getGetWines(view: View, context: Context) {
 
 
 }*/
+
+
+
+
+
+/*
+fun get(url: String, view: View) {
+
+
+    // var url = "http://10.110.108.182:5000/api/grapes"
+    val request = Request.Builder()
+        .get()
+        .url(url)
+        .build()
+    val client = OkHttpClient()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onResponse(call: Call, response: Response) {
+
+            var reseponseBody = response.body?.string()
+            Log.w("Success!!", "Response " + reseponseBody)
+
+
+            var gson = GsonBuilder().create()
+            var grapeList = gson.fromJson(reseponseBody, Array<GetGrapes>::class.java).toList()
+            Log.w("In get Grapes", "grapelist " + grapeList)
+
+            //     listOfGrapes = grapeList
+            //      Log.w("In get Grapes", "Global variable listOfTest " + listOfGrapes)
+            //  AddVineFragment().showGrapes(view = view)
+
+
+        }
+
+
+
+        override fun onFailure(call: Call, e: IOException) {
+            Log.w(
+                "ERROR",
+                "Failed Getgrapes " + call.hashCode() + e.message + e.localizedMessage + e.cause
+            )
+        }
+
+    }
+    )
+
+*/
+
+
+
+
+
+
+
+
+
+
+/*      //  var url = "http://10.110.108.182:5000/api/grapes"
+        val request = Request.Builder()
+            .get()
+            .url(url)
+            .build()
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call?, response: Response?) {
+
+                var reseponseBody = response?.body()?.string()
+                Log.w("Success!!", "Response " + reseponseBody)
+
+
+
+               *//* var gson = GsonBuilder().create()
+                var grapeList = gson.fromJson(reseponseBody, Array<GetGrapes>::class.java).toList()
+                Log.w("GrapeArrayList", "grapelist " + grapeList)
+
+                listOfGrapes = grapeList
+                Log.w("listOfGrapes", "Global variable " + listOfGrapes)
+                SettingsFragment().showGrapes()*//*
+
+            }
+
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                Log.w("ERROR", "Failed " + call.hashCode() + e?.message + e?.localizedMessage + e?.cause)
+            }
+
+        })
+
+        Log.w("request.body()  !!", "request.body() " + request.body())
+
+      */
+
+
+/*  //get wine names from vollley
+     fun getWineNamesApiVolley(view: View) {
+
+
+         Log.w("startWithWineString", "startWithWineString ===>> " + startWithWineString)
+
+         val queue = com.android.volley.toolbox.Volley.newRequestQueue(activity)
+
+         val url =
+             "http://54.72.51.80:5000/api/allwinelist?userid=FsOzZAQB95aLv8uqaTtIzmvxMKG3&startswith=${startWithWineString}"
+
+
+         val searchRequestVine = object : StringRequest(Method.GET, url,
+             Response.Listener { response ->
+
+                 val result = response.toString()
+
+                 Log.w("Result", "== Null" + result)
+
+
+                 if (result == "[]") {
+                   //  Log.w("Result", "== Null" + result + "new winename " + postWineName)
+                     //getUserNewNameWine(view)
+                 } else {
+
+                     var gson = GsonBuilder().create()
+
+                     val wineList: List<GetUserWineListClass> =
+                         gson.fromJson(result, Array<GetUserWineListClass>::class.java).toList()
+                     wineListGlobal = wineList
+
+
+                     setUpAdapterRecyclerview(view)
+                     searchNameWine(view)
+
+
+                     Log.w("GETWINENAME", " WINELIST  ======>>>>>> " + wineList)
+                 }
+
+
+             }, Response.ErrorListener { error ->
+                 Log.w("Error", "Error Get Wines" + error.toString())
+
+             }) {
+             override fun getBody(): ByteArray {
+                 return super.getBody()
+             }
+
+             override fun getBodyContentType(): String {
+                 return super.getBodyContentType()
+             }
+
+             override fun getParams(): MutableMap<String, String> {
+                 val params: MutableMap<String, String> = HashMap()
+                 //   params["startsWith"] = "wine"
+                 return params
+             }
+
+         }
+         queue.add(searchRequestVine)
+
+     }*/
+
+
+
+/*
+
+     fun searchNameWine(view: View) {
+
+         var wineNameUserSelection: String = ""
+         var wineId = ArrayList<Long>()
+         var wineNames = ArrayList<String>()
+
+         var arraOfWineNames = wineListGlobal?.let {
+             ArrayList<GetUserWineListClass>(it)
+
+         }
+
+         if (arraOfWineNames != null) {
+             for (i in arraOfWineNames) {
+
+                 wineNames.add(i.wineName.toString())
+                 // wineId.add(i.station)
+             }
+         }
+         var autoCompleteTextViewSearchVine: AutoCompleteTextView? = null
+
+         autoCompleteTextViewSearchVine =
+             view.findViewById(R.id.autoCompleteTextViewaddVineName) as AutoCompleteTextView
+
+         var adapterWineNameAutoCompleteTextView = activity?.let {
+
+             ArrayAdapter<String>(
+                 it,
+                 R.layout.spinner_layout_winenames,
+                 R.id.textViewWineNames,
+                 wineNames
+             )
+         }
+         autoCompleteTextViewSearchVine?.setAdapter(adapterWineNameAutoCompleteTextView)
+         autoCompleteTextViewSearchVine.setOnItemClickListener { parent, view, position, id ->
+
+             wineNameUserSelection = autoCompleteTextViewSearchVine.text.toString()
+
+
+             Log.w(
+                 "UserSelction Name", " wineNameUserSelection ==>>>>> " + wineNameUserSelection
+             )
+
+         }
+
+         autoCompleteTextViewSearchVine.addTextChangedListener(object : TextWatcher {
+
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                 startWithWineString = autoCompleteTextViewSearchVine.text.toString()
+
+             }
+
+             override fun afterTextChanged(s: Editable?) {
+
+             }
+
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+             }
+         })
+
+
+     }
+*/

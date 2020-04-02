@@ -1,6 +1,7 @@
 package com.example.testingkoltincode.Fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import com.android.volley.toolbox.Volley
 import com.example.testingkoltincode.ModelClasses.GetWineClass
 import com.example.testingkoltincode.ModelClasses.TydalClass
@@ -34,6 +36,23 @@ class ThirdFragment : Fragment(),main {
 
              jag(view)
         return view
+    }
+
+
+    fun signOut(){
+
+        var btn : Button? = null
+
+        btn = view?.findViewById(R.id.signout)
+
+        btn?.setOnClickListener {
+
+
+
+
+
+        }
+
     }
 
 

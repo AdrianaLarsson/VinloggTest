@@ -53,8 +53,6 @@ class FirstFragment : Fragment(), main {
         var queue = Volley.newRequestQueue(this.context?.applicationContext)
         getApi(url, queue, view)
 
-
-
     }
 
     fun makeMyHero(view: View, wineList: List<GetWineClass>, make: (List<GetWineClass>) -> List<GetWineClass>){
